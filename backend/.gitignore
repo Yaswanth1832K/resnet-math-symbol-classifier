@@ -66,6 +66,5 @@ data_split_medium/
 data_split_lightning/
 models/resnet18_math_symbols_v2.pth
 models/resnet18_math_symbols.pth
-*.pth
 *.pt
 test_synthetic_crop*.jpg
