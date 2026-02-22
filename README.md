@@ -1,183 +1,96 @@
-# 🧮 Math OCR Symbol Recognizer  
-### **Hybrid Classical + Deep Learning (ResNet) Approach**
+# 🧮 Trace AI: Handwritten Math Recognition  
+### **Full-Stack Application (Vite + React & FastAPI + ResNet-18)**
 
-This project implements a **complete handwritten math symbol recognition system** using two machine-learning pipelines:
+TraceAI is a complete, modernized handwritten math symbol recognition system. This application allows users to draw or upload images of extremely complex mathematical structures (including Greek letters, integral signs, sums, and trigonometry equations) to automatically translate them into functional **LaTeX Code** for easy documentation.
 
-1. **Classical ML Model:** HOG + LBP Feature Extraction + SVM  
-2. **Deep Learning Model:** ResNet-18/34 with Transfer Learning  
-
-The system supports symbol segmentation, data augmentation, collage test-image generation, LaTeX output, and full evaluation tools—making it an **end-to-end Math OCR engine**.
+The project originally started as a localized Jupyter Notebook using HOG/SVM classical models, but has been entirely rewritten from the ground up to utilize a state-of-the-art **82-Class ResNet-18 Convolutional Neural Network**, wrapped in a sleek **Vite/React** interface and backed by an asynchronous **FastAPI** server.
 
 ---
 
-# 📂 Dataset
+# 🚀 Features
 
-This project uses the **Handwritten Math Symbols Dataset** from Kaggle:
+## ✔ Frontend Web Application (Vite + Tailwind + React)
+- **High-DPI Drawing Canvas** with Undo/Eraser states.
+- **Drag-and-Drop Image Uploader** for instant evaluation of pictures.
+- **Beautiful Dark-Mode UI** featuring glassmorphism, glowing gradients, and responsive layouts.
+- **Dynamic LaTeX Rendering** engine that immediately evaluates physics/math formulas on-screen.
 
-🔗 Dataset: https://www.kaggle.com/datasets/sagyamthapa/handwritten-math-symbols  
-**Author:** Sagyam Thapa  
+## ✔ Backend Neural API (FastAPI + PyTorch)
+- Asynchronous python web server evaluating image POST requests in under **100ms**.
+- **Adaptive Image Preprocessing Pipeline** that cleans images using Gaussian Blur, OTSU Thresholding, Dilations, and Contour mapping to perfectly frame symbols before predicting. 
+- Custom algorithms that intelligently join 82 distinct PyTorch categories into perfectly concatenated string formats (e.g. bridging `\int` and `\pi`).
 
-### Dataset Includes:
-- 10,000+ grayscale handwritten symbol images  
-- **Digits:** `0–9`  
-- **Operators:** `+  −  ×  ÷  =  .`  
-- **Variables:** `x  y  z`  
-- Preprocessed: resized to 64×64, normalized, and label-encoded  
-
----
-
-# 🚀 Project Features
-
-## ✔ Classical OCR Model (HOG + LBP + SVM)
-- Custom image augmentation (rotation, shift, scaling)  
-- HOG-based shape features  
-- LBP-based texture features  
-- Lightweight SVM classifier  
-- Interpretable, traditional CV approach  
+## ✔ Deep Learning Model (ResNet-18)
+- Upgraded the legacy architecture to exclusively use Deep Learning with transfer learning from ImageNet.
+- Trained against a massive **370,000-image dataset** across **82 unique math/physics classes**.
+- Attains extremely robust intelligence with a staggering **96.65% Validation Accuracy**.
 
 ---
 
-## ✔ Deep Learning Model (ResNet-18 / ResNet-34)
-- Transfer learning from ImageNet  
-- Modified final FC layer for math symbol classification  
-- Data augmentation for robust training  
-- Supports training, evaluation, and inference on custom images  
+# 🤖 Supported Symbols (82 Classes)
 
-### **ResNet-18 Performance**
-| Metric | Score |
-|--------|--------|
-| Validation Accuracy | **96.40%** |
-| Test Accuracy | **96.60%** |
-| Precision / Recall / F1 | **0.97** |
-
-ResNet provides **excellent generalization**, robust feature extraction, and stable deep learning performance due to residual connections.
+The neural network has been fully trained to recognize:
+- **Digits**: `0` to `9`
+- **Arithmetic**: `+  -  ×  ÷  =  .`
+- **Greek Letters**: `\alpha`, `\beta`, `\gamma`, `\Delta`, `\theta`, `\lambda`, `\mu`, `\pi`, `\sigma`, `\phi`
+- **Advanced Calculus**: Integrals (`\int`), limits (`\lim`), infinity (`\infty`), sums (`\sum`), square roots (`\sqrt`), logs (`\log`)
+- **Trigonometry**: `\cos`, `\sin`, `\tan`
+- **Comparisons & Syntax**: Less than (`<`), Greater than (`>`), Belongs to (`\in`), Prime marks (`'`), all brackets `{}[]()`, and alphabetical variables `x, y, z`, etc.
 
 ---
 
-## ✔ Symbol Segmentation Module
-- Segments handwritten equations into individual symbols  
-- Works for fixed-width synthetic collages  
-- Outputs symbol images for classification  
+# ⚙️ Local Installation & Execution
 
----
-
-## ✔ Synthetic Test Collage Generator
-Automatically creates realistic test samples:
-
-- Randomly selects **3–5 symbols**
-- Concatenates them horizontally  
-- Saves the image + ground truth labels  
-- Useful for benchmarking both models  
-
----
-
-## ✔ Evaluation Tools
-- Predict symbols using Classical or ResNet model  
-- Visualize segmented symbols with predicted labels  
-- Convert predicted symbols into **LaTeX expression format**  
-- Compare accuracy between the two models  
-
----
-
-# 🧠 Classical OCR Workflow
-
-### **1. Load + Augment Dataset**
-```python
-ocr = AugmentedFeatureOCR()
-features, labels = ocr.load_and_augment_dataset(data_dir, max_samples=4000)
-```
-
-### **2. Train SVM Model**
-```python
-ocr.train_classifier(features, labels)
-```
-
-### **3. Segment Image into Symbols**
-```python
-symbols = ocr.segment_symbols_fixed("test.jpg", n_symbols=4)
-```
-
-### **4. Predict + Generate LaTeX**
-```python
-predicted = ocr.classify_symbols(symbols)
-latex = ocr.to_latex(predicted)
-```
-
----
-
-# 🤖 ResNet Model Workflow
-
-### **Train ResNet**
+### 1. Backend Server Setup
+To execute the neural network API:
 ```bash
-python train_resnet.py --data dataset/ --epochs 20
-```
+# Navigate to the backend
+cd backend
 
-### **Evaluate ResNet**
+# Install dependencies
+pip install fastapi uvicorn python-multipart torch torchvision opencv-python numpy
+
+# Run the API
+python app.py
+```
+*(The server will boot up and host the inference API on `http://localhost:8000`)*
+
+### 2. Frontend React Setup
+To execute the frontend:
 ```bash
-python evaluate.py --weights model.pth
+# Navigate to the frontend
+cd frontend
+
+# Install Node dependencies
+npm install
+
+# Start the dev environment
+npm run dev
 ```
+*(The website will boot up on `http://localhost:5173`. Simply go to the link to play with the application.)*
 
 ---
 
-# 🖼 Generate Test Collage Images
-```python
-test_images_info = generate_test_collages_variable_length(
-    data_dir,
-    class_folders,
-    n_test=50,
-    min_symbols=3,
-    max_symbols=5
-)
-```
+# 🚀 Cloud Deployment Instructions
 
----
+### 1. Deploying the Backend (Render)
+By hosting the Python API on **Render**, you provide a stable, free URL that the frontend can securely talk to.
+1. Make sure you push this code to a public GitHub repository. 
+2. Go to [Render.com](https://render.com) and create a **New Web Service**.
+3. Connect your GitHub repository.
+4. Set the **Root Directory** to `backend`.
+5. Set the **Build Command** to: `pip install -r requirements.txt` (Ensure you create a `requirements.txt` listing the libraries mentioned above).
+6. Set the **Start Command** to: `uvicorn app:app --host 0.0.0.0 --port $PORT`
+7. Render will automatically build the environment and provide you with a live `https://...` API URL!
 
-# 🔍 Test All Images
-```python
-test_all_images(ocr, test_images_info)
-```
-
-Outputs include:
-- Ground truth  
-- Predicted sequence  
-- Generated LaTeX  
-- Visualized segmentation + classification  
-
----
-
-# 🧪 Supported Symbols
-
-| Category | Symbols |
-|----------|---------|
-| **Digits** | `0 1 2 3 4 5 6 7 8 9` |
-| **Operators** | `+  -  ×  ÷  =  .` |
-| **Variables** | `x  y  z` |
-
----
-
-# 🛠 Tech Stack
-
-### **Classical Model**
-- Python  
-- OpenCV  
-- NumPy  
-- scikit-learn  
-- scikit-image  
-- Matplotlib  
-
-### **Deep Learning Model**
-- PyTorch / TensorFlow  
-- ResNet-18 / ResNet-34  
-- GPU-supported training  
-
----
-
-# 📈 Future Enhancements
-- Sequence-to-sequence (Seq2Seq) for entire expression recognition  
-- Attention-based segmentation  
-- End-to-end neural OCR pipeline  
-- Support for hand-drawn real-world equations  
-- Transformer-based symbol recognition  
+### 2. Deploying the Frontend (Vercel)
+Once the backend is live on Render, host the website UI on **Vercel**.
+1. Open `frontend/src/App.jsx` and replace the API fetch address (`http://localhost:8000/predict`) with your new **Render Web Service URL**.
+2. Go to [Vercel.com](https://vercel.com) and click **Add New Project**.
+3. Import this same GitHub repository.
+4. Set the **Framework Preset** to `Vite`.
+5. Set the **Root Directory** to `frontend`.
+6. Click **Deploy**. Vercel will install npm, bundle the application, and provide you with a permanent, hyper-fast live website link!
 
 ---
 
