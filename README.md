@@ -1,7 +1,7 @@
-# 🧮 Trace AI: Handwritten Math Recognition  
+# 🧮 Handwritten Math Recognition  
 ### **Full-Stack Application (Vite + React & FastAPI + ResNet-18)**
 
-TraceAI is a complete, modernized handwritten math symbol recognition system. This application allows users to draw or upload images of extremely complex mathematical structures (including Greek letters, integral signs, sums, and trigonometry equations) to automatically translate them into functional **LaTeX Code** for easy documentation.
+This is a complete, modernized handwritten math symbol recognition system. This application allows users to draw or upload images of extremely complex mathematical structures (including Greek letters, integral signs, sums, and trigonometry equations) to automatically translate them into functional **LaTeX Code** for easy documentation.
 
 The project originally started as a localized Jupyter Notebook using HOG/SVM classical models, but has been entirely rewritten from the ground up to utilize a state-of-the-art **82-Class ResNet-18 Convolutional Neural Network**, wrapped in a sleek **Vite/React** interface and backed by an asynchronous **FastAPI** server.
 
@@ -71,27 +71,5 @@ npm run dev
 
 ---
 
-# 🚀 Cloud Deployment Instructions
-
-### 1. Deploying the Backend (Render)
-By hosting the Python API on **Render**, you provide a stable, free URL that the frontend can securely talk to.
-1. Make sure you push this code to a public GitHub repository. 
-2. Go to [Render.com](https://render.com) and create a **New Web Service**.
-3. Connect your GitHub repository.
-4. Set the **Root Directory** to `backend`.
-5. Set the **Build Command** to: `pip install -r requirements.txt` (Ensure you create a `requirements.txt` listing the libraries mentioned above).
-6. Set the **Start Command** to: `uvicorn app:app --host 0.0.0.0 --port $PORT`
-7. Render will automatically build the environment and provide you with a live `https://...` API URL!
-
-### 2. Deploying the Frontend (Vercel)
-Once the backend is live on Render, host the website UI on **Vercel**.
-1. Open `frontend/src/App.jsx` and replace the API fetch address (`http://localhost:8000/predict`) with your new **Render Web Service URL**.
-2. Go to [Vercel.com](https://vercel.com) and click **Add New Project**.
-3. Import this same GitHub repository.
-4. Set the **Framework Preset** to `Vite`.
-5. Set the **Root Directory** to `frontend`.
-6. Click **Deploy**. Vercel will install npm, bundle the application, and provide you with a permanent, hyper-fast live website link!
-
----
 
 ⭐ *If this project helped you, consider starring the repository!* ⭐
