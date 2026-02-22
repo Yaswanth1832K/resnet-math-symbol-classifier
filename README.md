@@ -23,7 +23,13 @@ The project originally started as a localized Jupyter Notebook using HOG/SVM cla
 ## ✔ Deep Learning Model (ResNet-18)
 - Upgraded the legacy architecture to exclusively use Deep Learning with transfer learning from ImageNet.
 - Trained against a massive **370,000-image dataset** across **82 unique math/physics classes**.
-- Attains extremely robust intelligence with a staggering **96.65% Validation Accuracy**.
+
+### **ResNet-18 Performance**
+| Metric | Score |
+|--------|--------|
+| Multi-Class Validation Accuracy | **96.65%** |
+
+This modern Deep Learning rewrite allows the system to generalize beautiful high-contrast ink patterns into strict categorical mathematics, effortlessly distinguishing `\pi` ink structures from a plain `!` mark through dynamic pixel padding.
 
 ---
 
