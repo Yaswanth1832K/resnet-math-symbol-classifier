@@ -22,7 +22,7 @@ function App() {
 
         try {
             // Pointing to our FastAPI backend
-            const response = await fetch('http://localhost:8000/api/predict', {
+            const response = await fetch('https://resnet-math-symbol-classifier.onrender.com', {
                 method: 'POST',
                 body: formData,
             })
