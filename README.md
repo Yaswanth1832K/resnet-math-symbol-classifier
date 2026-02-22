@@ -1,6 +1,8 @@
 # 🧮 Handwritten Math Recognition  
 ### **Full-Stack Application (Vite + React & FastAPI + ResNet-18)**
 
+🔗 **Live Demo:** [https://resnet-math-symbol-classifier.vercel.app](https://resnet-math-symbol-classifier.vercel.app)
+
 This is a complete, modernized handwritten math symbol recognition system. This application allows users to draw or upload images of extremely complex mathematical structures (including Greek letters, integral signs, sums, and trigonometry equations) to automatically translate them into functional **LaTeX Code** for easy documentation.
 
 The project originally started as a localized Jupyter Notebook using HOG/SVM classical models, but has been entirely rewritten from the ground up to utilize a state-of-the-art **82-Class ResNet-18 Convolutional Neural Network**, wrapped in a sleek **Vite/React** interface and backed by an asynchronous **FastAPI** server.
