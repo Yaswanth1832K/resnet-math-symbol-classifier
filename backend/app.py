@@ -170,6 +170,10 @@ def to_latex(predictions):
             latex.append(p)
     return " ".join(latex)
 
+@app.get("/")
+async def root():
+    return {"message": "Math Symbol Classifier API is running. Use /api/predict to evaluate images."}
+
 @app.get("/api/health")
 async def health():
     status = "ready" if (model is not None or load_system()) else "waiting_for_model"

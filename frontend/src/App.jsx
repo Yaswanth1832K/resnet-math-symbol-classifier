@@ -21,8 +21,8 @@ function App() {
         formData.append('file', fileOrBlob, 'image.png')
 
         try {
-            // Pointing to our FastAPI backend
-            const response = await fetch('https://resnet-math-symbol-classifier.onrender.com', {
+            // Pointing to our deployed Render FastAPI backend
+            const response = await fetch('https://resnet-math-symbol-classifier.onrender.com/api/predict', {
                 method: 'POST',
                 body: formData,
             })
@@ -111,8 +111,8 @@ function App() {
                             <button
                                 onClick={() => setActiveTab('upload')}
                                 className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-medium transition-all ${activeTab === 'upload'
-                                        ? 'bg-white/10 text-white shadow-sm'
-                                        : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'
+                                    ? 'bg-white/10 text-white shadow-sm'
+                                    : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'
                                     }`}
                             >
                                 <UploadCloud className="w-4 h-4" />
@@ -121,8 +121,8 @@ function App() {
                             <button
                                 onClick={() => setActiveTab('draw')}
                                 className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-medium transition-all ${activeTab === 'draw'
-                                        ? 'bg-white/10 text-white shadow-sm'
-                                        : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'
+                                    ? 'bg-white/10 text-white shadow-sm'
+                                    : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'
                                     }`}
                             >
                                 <PenTool className="w-4 h-4" />
